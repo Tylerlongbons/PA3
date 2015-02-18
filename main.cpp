@@ -31,11 +31,13 @@
 
 		std::ifstream inFile(argv[1]);
 		std::string fileType = getFileType(inFile);
+		std::ifstream inFile2(argv[1]);
+
 
 		if(fileType == "ascii")
 		{
-
-			if(readAsciiFile(inFile) == -1)
+			
+			if(readAsciiFile(inFile2) == -1)
 			{
 				//std::cout<< "Read File Failed"<<std::endl;
 				return -1;
@@ -51,12 +53,12 @@
 
 		}else if(fileType == "binary")
 		{
-		
+			
 			std::ifstream binFile(argv[1]);
 			//std::ifstream binFile(argv[2]);
 			if(readBinaryFile(binFile) == -1)
 			{
-				std::cout<<"BIN ERROR";
+				//std::cout<<"BIN ERROR";
 					return -1;
 			}
 			
@@ -74,7 +76,7 @@
 
 		if(validatePixels() == -1)
 			{
-				std::cout << "Bad Pixels" << std::endl;
+				//std::cout << "Bad Pixels" << std::endl;
 				return -1;
 			}
 			findMin();
@@ -83,7 +85,7 @@
 		
 			if(rescale() == -1)
 			{
-				std::cout << "Failed to rescale" << std::endl;
+				//std::cout << "Failed to rescale" << std::endl;
 				return -1;
 			}
 		

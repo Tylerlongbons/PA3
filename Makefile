@@ -15,7 +15,7 @@ image.o: image.cpp image.h
 				$(CC) $(CFLAGS) image.cpp
 
 clean:
-				rm -f *.o pa2
+				rm -f *.o pa3
 
 tar:
-				tar cf PA2.tar *.cpp *.h Makefile																
+				tar cf PA3.tar *.cpp *.h Makefile																

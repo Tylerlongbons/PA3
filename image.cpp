@@ -74,7 +74,7 @@ std::string getFileType(std::istream& inFile)
 //Use for Debugging
 void printOrigFinalData()
 {
-		for(unsigned int i = 0; i < origFileData.size();i++)
+		for(unsigned int i = 0; i < 10;i++)
 		{
 			std::cout<<"Line: " << i << std::endl;
 				for(unsigned int j = 0; j < origFileData[i].size();j++)
@@ -88,7 +88,7 @@ void printOrigFinalData()
 //Use for debugging
 void printPixels()
 {
-		for(unsigned int i = 0;i < pixels.size();i++)
+		for(unsigned int i = 0;i < 5;i++)
 		{
 			std::cout<<"Pixels: " << pixels[i] << std::endl;
 		}
@@ -204,7 +204,7 @@ int processAsciiFileData()
 							{
 								return -1;
 							}
-							break;
+						
 						}
 
 					}else
@@ -236,6 +236,7 @@ int processAsciiFileData()
 }
 
 
+
 int readAsciiFile(std::istream& inFile)
 {
 	
@@ -246,9 +247,9 @@ int readAsciiFile(std::istream& inFile)
 	//int lineCount = 0;
 	std::string line;
 	//Read each line primarily to make parsing comments easier
+	
 	while(getline(inFile, line))
 	{
-		
 		std::vector<std::string> row;
 
 		std::istringstream lineStream(line);
@@ -438,9 +439,9 @@ return 0;
 std::string getExtension(std::string& fileName)
 {
 	std::string extension = fileName.substr(fileName.find("."), fileName.length());
-	//std::cout <<"Extension: " << extension << std::endl;
 	return extension;
 }
+
 
 int readBinaryFile(std::istream& inFile)
 {
@@ -451,28 +452,17 @@ int readBinaryFile(std::istream& inFile)
   	
     unsigned c = inFile.get();
     pixels.push_back(c);
-	//std::cout << "C: " << c <<std::endl;
   }
   pixels.erase(pixels.begin() + pixels.size() - 1);
-  
-  //width         = pixels[2];
-  //height        = pixels[6];
-  //MAX_PIXEL_VAL = pixels[10];
+
   pixels.erase(pixels.begin(),     pixels.begin() + 2);
+  pixels[0] = pixels[0]|pixels[1]<<8|pixels[2]<<16|pixels[3]<<24;	
   pixels.erase(pixels.begin() + 1, pixels.begin() + 4);
+  pixels[1] = pixels[1]|pixels[2]<<8|pixels[3]<<16|pixels[4]<<24;	
   pixels.erase(pixels.begin() + 2, pixels.begin() + 5);
+  pixels[2] = pixels[2]|pixels[3]<<8|pixels[4]<<16|pixels[5]<<24;	
   pixels.erase(pixels.begin() + 3, pixels.begin() + 6);
 
-
-  //for(unsigned int i = 0; i < pixels.size(); i++)
-  //{
-  //	std::cout<<i << " C: " << pixels[i] <<std::endl;
-
-  //}
-
-	//std::cout << "width: " << width <<std::endl;
-	//std::cout << "height: " << height <<std::endl;
-	//std::cout << "max val: " << MAX_PIXEL_VAL <<std::endl;
 
 return 0;
 }
